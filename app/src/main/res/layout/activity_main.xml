@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="pluralsight.com.tabiangifts.util.StringUtil"/>
+        <import type="android.view.View"/>
+        <variable
+            name="cartView"
+            type="pluralsight.com.tabiangifts.models.CartViewModel"/>
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="codingwithmitch.com.databindingtest.MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar"
+                android:background="@color/blue4"
+                android:elevation="10dp"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize">
+
+                        <LinearLayout
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/cart"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp">
+
+                            <TextView
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:id="@+id/item_count"
+                                android:text="@{StringUtil.convertIntToString(cartView.cart.size())}"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/White"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_cart_white"
+                                android:id="@+id/cart_image"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@color/White"
+                        android:orientation="vertical"
+                        android:visibility="@{cartView.cartVisible ? View.VISIBLE : View.GONE}">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{@string/cart_subtotal}"
+                                android:textSize="16sp"
+                                android:textColor="@color/Black"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{cartView.getProductQuantitiesString()}"
+                                android:textSize="16sp"
+                                android:textColor="@color/Black"/>
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:text="@{cartView.getTotalCostString()}"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textColor="@color/red2"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/orange_rounded_button"
+                            android:id="@+id/proceed_to_checkout">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/Black"
+                                android:text="@{@string/proceed_to_checkout}"
+                                android:id="@+id/text_add_to_cart"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/main_container">
+
+                </FrameLayout>
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/progress_bar"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
+

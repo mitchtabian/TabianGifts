@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="pluralsight.com.tabiangifts.util.BigDecimalUtil"/>
+        <import type="android.view.View"/>
+        <variable
+            name="cartItemView"
+            type="pluralsight.com.tabiangifts.models.CartItemViewModel"/>
+
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+        android:background="@drawable/grey_border_bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/adjust_quantities"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/image"
+                app:imageUrl="@{cartItemView.cartItem.product.image}"
+                android:scaleType="fitCenter"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{cartItemView.cartItem.product.title}"
+                    android:id="@+id/title"
+                    android:textSize="14sp"
+                    android:textColor="@color/Black"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_dollor_sign_red"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/red2"
+                        android:text="@{cartItemView.cartItem.product.hasSalePrice() ?  BigDecimalUtil.getValue(cartItemView.cartItem.product.sale_price) : BigDecimalUtil.getValue(cartItemView.cartItem.product.price)}"
+                        android:id="@+id/price"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="@color/DarkGrey"
+                        android:text="@{BigDecimalUtil.getValue(cartItemView.cartItem.product.price)}"
+                        android:id="@+id/original_price"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="@{cartItemView.cartItem.product.hasSalePrice() ? View.VISIBLE  : View.GONE}"
+                        android:background="@drawable/strike_through"
+                        />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quantity"
+                    android:text="@{cartItemView.getQuantityString(cartItemView.cartItem)}"
+                    android:textColor="@color/Black"
+                    android:textSize="15sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="14dp"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/adjust_quantities"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@+id/increase_quantity"
+                android:background="@drawable/grey_rounded_button"
+                android:onClick="@{() -> cartItemView.increaseQuantity(context)}">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_up_arrow_black"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@+id/decrease_quantity"
+                android:background="@drawable/grey_rounded_button"
+                android:layout_marginTop="5dp"
+                android:onClick="@{() -> cartItemView.decreaseQuantity(context)}">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_down_arrow_black"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

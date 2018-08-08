@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TabianGifts</string>
+
+    <!-- dialog tags -->
+    <string name="dialog_choose_quantity">Choose Quantity</string>
+
+    <!-- fragment tags -->
+    <string name="fragment_main">Main</string>
+    <string name="fragment_view_product">View Product</string>
+    <string name="fragment_view_cart">View Cart</string>
+
+    <!-- Intent keys -->
+    <string name="intent_product">intent_product</string>
+
+    <!-- Strings -->
+    <string name="dialog_quantity_title">Qty: </string>
+    <string name="cart_subtotal">Cart subtotal</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+</resources>
